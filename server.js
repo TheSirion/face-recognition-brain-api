@@ -10,6 +10,7 @@ const image = require('./controllers/image');
 
 // connects with the postgreSQL database using Knex.JS
 const db = knex({
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0; 
   client: 'pg',
   connection: {
     connectionString: process.env.DATABASE_URL,
