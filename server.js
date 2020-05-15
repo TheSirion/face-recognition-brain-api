@@ -25,12 +25,9 @@ db.select('*').from('users').then(data => {
 
 const app = express();
 app.use(express.json());
-app.use(cors());
-
-const corsOptions = {
-  origin: 'https://thesirion.github.io/face-recognition-brain/',
-  optionsSuccessStatus: 200
-}
+app.use(cors({
+  origin: 'https://thesirion.github.io/face-recognition-brain/'
+}));
 
 app.get('/', (req, res) => {
   // res.send(database.users);
@@ -38,15 +35,15 @@ app.get('/', (req, res) => {
 })
 
 // processes sign in data
-app.post('/signin', cors(corsOptions), (req, res) => {signin.handleSignin(req, res, db, bcrypt)});
+app.post('/signin', (req, res) => {signin.handleSignin(req, res, db, bcrypt)});
 // registers a new user to the database
-app.post('/register', cors(corsOptions), (req, res) => { register.handleRegister(req, res, db, bcrypt) });
+app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) });
 // gets a registered profile (if available)
-app.get('/profile/:id', cors(corsOptions), (req, res) => {profile.handleProfileGet(req, res, db)});
+app.get('/profile/:id', (req, res) => {profile.handleProfileGet(req, res, db)});
 // handles the count of images processed
-app.put('/image', cors(corsOptions), (req, res) => {image.handleImage(req, res, db)});
+app.put('/image', (req, res) => {image.handleImage(req, res, db)});
 // handles calling the Clarifai API
-app.post('/imageurl', cors(corsOptions), (req, res) => {image.handleApiCall(req, res)});
+app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)});
 
 app.listen(process.env.PORT || 3000, () => {
   console.log(`app is running on port ${process.env.PORT}`);
