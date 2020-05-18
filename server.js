@@ -26,7 +26,7 @@ db.select('*').from('users').then(data => {
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: 'https://thesirion.github.io/'
+  origin: 'https://thesirion.github.io'
 }));
 
 app.get('/', (req, res) => {
