@@ -29,18 +29,18 @@ const app = express();
 app.use(express.json());
 
 var whitelist = ['https://thesirion.github.io', 'https://my-smart-brain-frontend.herokuapp.com', 'localhost:3000']
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      return origin;
-    } else {
-      throw new Error('Not allowed by CORS')
-    }
-  }
-}
+// const corsOptions = {
+//   origin: (origin) => {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       return true;
+//     } else {
+//       throw new Error('Not allowed by CORS')
+//     }
+//   }
+// }
 
 app.use(cors({
-  origin: corsOptions
+  origin: whitelist
 }));
 
 app.get('/', (req, res) => {
