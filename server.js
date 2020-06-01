@@ -8,6 +8,8 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
+const PORT = process.env.PORT || 3000;
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
 // connects with the postgreSQL database using Knex.JS
 const db = knex({
@@ -57,6 +59,6 @@ app.put('/image', (req, res) => {image.handleImage(req, res, db)});
 // handles calling the Clarifai API
 app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)});
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(PORT, () => {
   console.log(`app is running on port ${process.env.PORT}`);
 })
