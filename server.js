@@ -32,9 +32,9 @@ var whitelist = ['https://thesirion.github.io', 'https://my-smart-brain-frontend
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
-      return callback(null, true)
+      return origin;
     } else {
-      return callback(new Error('Not allowed by CORS'))
+      throw new Error('Not allowed by CORS')
     }
   }
 }
